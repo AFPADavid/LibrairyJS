@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo Live cours jQuery</title>
+
+    <!-- Inclure la bibliothèque jQuery à partir d'un CDN -->
+    <script src="jquery-3.6.0.min.js"></script>
+    <style>
+        .surligne{ 
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Démo jQuery</h1>
+
+    <button class="btnAfficheMasque"> Afficher ou masquer le paragraphe</button>
+    <button id="btnSurligne"> Surligne le paragraphe</button>
+    <button id="btnPasSurligne"> Efface le surligne du paragraphe</button>
+    <button id="btnToggleSurligne"> Surligne/Efface le surligne du paragraphe</button>
+    <button id="btnFadeOut"> Fade</button>
+
+    <p id="texte"><b>Lorem ipsum dolor sit amet consectetur</b> adipisicing elit. Sed, debitis voluptatibus, dolor eum ipsam iure laborum saepe dolores, nam eveniet explicabo eaque repudiandae praesentium minus. Iure dolor dignissimos amet iste!</p>
+    
+
+    <script>
+
+        function monInit(){
+            const btnAfficheMasque = $('.btnAfficheMasque');
+            const btnSurligne = $('#btnSurligne');
+            const btnPasSurligne = $('#btnPasSurligne');
+            const btnToggleSurligne = $('#btnToggleSurligne');
+            const btnFadeOut = $('#btnFadeOut');
+            const myText = $('#texte');
+
+            btnAfficheMasque.on("click", function(){
+                console.log("Je click pour masquer/afficher");
+                myText.toggle();
+            })
+
+            btnSurligne.on("click",function(){
+                console.log("Je surligne");
+                myText.addClass("surligne")
+            })
+
+            btnPasSurligne.on("click",function(){
+                console.log("Je pas surligne");
+                myText.removeClass("surligne")
+            })
+
+
+            btnToggleSurligne.on("click",function(){
+                console.log("Je toggle surligne");
+                myText.toggleClass("surligne")
+            })
+            btnFadeOut.on("click",function(){
+                myText.fadeToggle(3000)
+            })
+        }
+
+        $(document).ready(monInit);
+
+        $( window ).resize(function() {
+            console.log("je resize");
+            console.log($(window).width());
+            if($(window).width() < 760){
+                $('#texte').width($(window).width()/4);
+            }else {
+                $('#texte').width($(window).width());
+            }
+            
+
+        });
+    </script>
+
+
+</body>
+</html>
